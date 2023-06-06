@@ -1,0 +1,97 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../logo/logo-900x900-carre.png" />
+    <link rel="stylesheet" href="../asset/root.css">
+    <link rel="stylesheet" href="../asset/normalize.css">
+    <link rel="stylesheet" href="../asset/basic.css">
+    <link rel="stylesheet" href="../asset/header.css">
+    <link rel="stylesheet" href="../asset/footer.css">
+    <link rel="stylesheet" href="../login.css">
+    <link rel="stylesheet" href="../animation/animation.css">
+    <link rel="stylesheet" href="../mobile/mobile.css">
+    <script src="../animation.js"></script>
+    <title>Accueil</title>
+</head>
+<body>
+    <!--pasport/js-->
+    <header>
+        
+       <section>
+            <article>
+                <h1>Veuilliez vous connecter: </h1>
+            </article>
+       </section>
+    </header>
+    <main>
+        <form action="/admin/signIn" method="POST">
+            <div>
+              <label for="username">Nom d'utilisateur :</label>
+              <input type="text" id="username" name="username" >
+            </div>
+            <div>
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" id="email" name="email" >
+              </div>
+            <div>
+              <label for="password">Mot de passe :</label>
+              <input type="password" id="password" name="password" >
+            </div>
+            
+            <input type="submit" value="Se connecter">
+          </form>
+          <% if(error) { %>
+            <div class="error">
+                <p><%= error %></p>
+            </div>
+          <% }; %>
+          
+    </main>
+    <footer>
+            
+        <section id="contact_them">
+            <h1>Contactez-nous : </h1>
+            <article>
+                <div>
+                    <ul>
+                        <li>Tél : 01 64 42 98 30</li>
+                        <li>Mail: contact@tpms.fr </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li>Adresse :</li>
+                        <li>ZAC du closeau 9 rue Louis Armand,</li>
+                        <li>Tournan en brie, 77220</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li>Projets réalisés : 305</li>
+                        <li>Clients: 92</li>
+                        <li>Machines de chantiers: 8 </li>
+                    </ul>
+                </div>
+                <div>
+                    <img class="logo_tpms" src="logo/logo-tpms.png" alt="logo-TPMS">
+                </div>
+                <ul>
+                    <li>Conditions générales de vente</li>
+                    <li>Mentions légales</li>
+                    <li>Politique de confidentialité</li>
+                </ul>
+                
+                
+                <ul>
+                    <li>© 2023 TPMS </li>
+                    <li>| Réalisé par Monades |</li>
+                </ul>
+            </article>
+        </section>
+    </footer>
+</body>
+
+</html>
+

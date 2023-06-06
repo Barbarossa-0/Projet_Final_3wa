@@ -1,0 +1,68 @@
+*{
+    box-sizing:border-box;
+    z-index:1;
+}
+body { 
+	margin: 0;
+	padding: 0;
+    
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: "MonomaniacForTitle", sans-serif;
+}
+:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+    font-family: "TekoSimpleTxt", sans-serif;
+}
+li{
+    list-style: none;
+}
+html{
+    margin:0;
+    padding:0;
+}
+ul{
+    padding:0;
+}
+a{
+    text-decoration: none;
+    color:currentColor;
+}
+.container {
+	max-width: 1100px; 
+	margin-left: auto; 
+	margin-right: auto;
+}
+main{
+    padding:1%;
+    overflow: hidden;
+}
+.sidebar {
+    display: none;
+  }
+.grid3{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2.5%;
+    padding:2.5%;
+}
+.centralH{
+    text-align: center;
+    text-decoration: underline;
+}
+#containerParallel{
+    position: absolute;
+    z-index: -1;
+}
+#parallelogramme {
+    height: 0;
+    width: 100%;
+    border-right: 97vw solid transparent;
+    border-bottom: 20vw solid var(--backGrey);
+}
+#parallelogrammeSecundus {
+    height: 0;
+    width: 100%;
+    border-top: 20vw solid var(--backGrey);
+    border-left: 97vw solid transparent;
+}
+  

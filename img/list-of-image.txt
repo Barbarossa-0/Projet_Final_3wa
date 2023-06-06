@@ -1,0 +1,28 @@
+image-temporaire-SLIDER
+logo-tpms/
+linkedin/
+youtube/
+facebook/
+instagram/
+logo-aipr/
+icone = {
+    VRD,/
+    Assainisment,/
+    DEMOLITION & TERRASSEMENT,/
+    AMENAGEMENT EXTERIEUR,/
+    LOCATION AVC CHAUFFEUR,/
+    CANONS-BRUMISATEUR/
+}
+icone-LOCATION = {
+    ACCES CHANTIER,/
+    CITERNAGE,/
+    RECONNAISSANCE DE FONDATION,/
+    RECONNAISSANCE ENVIRONEMENTALE,/
+    SONDAGE GEOTECHNIQUE/
+}
+mini-icone-LOCATION = {
+    Profondeur de fouille(mm):,/
+    Poids(kg):,/
+    Largeur minimale(mm):,/
+}
+images-des-articles : image temporaire

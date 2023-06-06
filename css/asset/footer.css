@@ -1,0 +1,180 @@
+footer{
+    background-color: var(--black) ;
+    color: var(--white);
+    padding-bottom: 0vh;
+}
+#contact_them h1 {
+    text-align: center;
+    text-decoration: underline;
+    padding: 2vw;
+    margin: 0 auto;
+    font-size: 7.5vw;
+}
+#contact_them article {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 3vw;
+    text-align: center;
+    row-gap: 4vh;
+    column-gap: 3vw;
+    font-size: 3.5vw;
+}
+#contact_them article div img{
+    width: 100%;
+}
+@media screen and (min-width: 360px) {
+    footer{
+        background-color: var(--black) ;
+        color: var(--white);
+        padding-bottom: 0vh;
+    }
+    #contact_them h1 {
+        text-align: center;
+        text-decoration: underline;
+        padding: 2vw;
+        margin: 0 auto;
+        font-size: 7.5vw;
+    }
+    #contact_them article {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 3vw;
+        text-align: center;
+        row-gap: 4vh;
+        column-gap: 3vw;
+        font-size: 3.5vw;
+    }
+    #contact_them article div img{
+        width: 100%;
+    }
+}
+@media screen and (min-width: 480px) {
+    footer{
+        background-color: var(--black) ;
+        color: var(--white);
+        padding-bottom: 0vh;
+    }
+    #contact_them h1 {
+        text-align: center;
+        text-decoration: underline;
+        padding: 2vw;
+        margin: 0 auto;
+        font-size: 4vw;
+    }
+    #contact_them article {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 3vw;
+        text-align: center;
+        row-gap: 2vh;
+        column-gap: 3vw;
+        font-size: 2.2vw;
+    }
+    #contact_them article div img{
+        width: 85%;
+    }
+}
+@media screen and (min-width: 768px) {
+    footer{
+        background-color: var(--black) ;
+        color: var(--white);
+        padding-bottom: 0vh;
+    }
+    #contact_them h1 {
+        text-align: center;
+        text-decoration: underline;
+        padding: 2vw;
+        margin: 0 auto;
+        font-size: 3vw;
+    }
+    #contact_them article {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 2vw;
+        text-align: center;
+        row-gap: 2vh;
+        column-gap: 2vw;
+        font-size: 1.8vw;
+    }
+    #contact_them article div img{
+        width: 70%;
+    }
+}
+@media screen and (min-width: 1024px){
+    footer{
+        background-color: var(--black) ;
+        color: var(--white);
+        padding-bottom: 0vh;
+    }
+    #contact_them h1 {
+        text-align: center;
+        text-decoration: underline;
+        padding: 2vw;
+        margin: 0 auto;
+        font-size: 2.5vw;
+    }
+    #contact_them article {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 2vw;
+        text-align: center;
+        row-gap: 2vh;
+        column-gap: 2vw;
+        font-size: 1.5vw;
+    }
+    #contact_them article div img{
+        width: 55%;
+    }
+}
+@media screen and (min-width: 1280px){
+    footer{
+        background-color: var(--black) ;
+        color: var(--white);
+        padding-bottom: 0vh;
+    }
+    #contact_them h1 {
+        text-align: center;
+        text-decoration: underline;
+        padding: 2vw;
+        margin: 0 auto;
+        font-size: 2.5vw;
+    }
+    #contact_them article {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 2vw;
+        text-align: center;
+        row-gap: 2vh;
+        column-gap: 2vw;
+        font-size: 1.2vw;
+    }
+    #contact_them article div img{
+        width: 50%;
+    }
+}
+@media screen and (min-width: 1440px){
+    footer{
+        background-color: var(--black) ;
+        color: var(--white);
+        padding-bottom: 0vh;
+    }
+    #contact_them h1 {
+        text-align: center;
+        text-decoration: underline;
+        padding: 2vw;
+        margin: 0 auto;
+        font-size: 1.8vw;
+    }
+    #contact_them article {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 2vw;
+        text-align: center;
+        row-gap: 2vh;
+        column-gap: 2vw;
+        font-size: 1vw;
+    }
+    #contact_them article div img{
+        width: 40%;
+    }
+}

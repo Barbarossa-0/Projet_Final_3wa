@@ -1,0 +1,17 @@
+:root{
+    --black: rgba(18, 18, 18, 85%) ;
+    --red: rgb(225, 34, 60, 100%);
+    --grey: rgba(125, 131, 134, 100%) ;
+    --white: rgb(241, 237, 237);
+    --lowWhite: rgba(255, 255, 255, 85%);
+    --transparent: rgba(255, 255, 255, 25%);
+    --backGrey: rgba(166, 166, 166, 0.25);
+}
+@font-face {
+    font-family: "MonomaniacForTitle";
+    src: url("font/MonomaniacOne-Regular.ttf") format("ttf")
+}
+@font-face {
+    font-family: "TekoSimpleTxt";
+    src: url("font/teko/Teko-Light.ttf") format("ttf")
+}

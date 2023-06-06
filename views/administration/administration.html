@@ -1,0 +1,183 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logo/logo-900x900-carre.png" />
+    <link rel="stylesheet" href="../asset/root.css">
+    <link rel="stylesheet" href="../asset/normalize.css">
+    <link rel="stylesheet" href="../asset/basic.css">
+    <link rel="stylesheet" href="../asset/header.css">
+    <link rel="stylesheet" href="../asset/footer.css">
+    <link rel="stylesheet" href="../administration.css">
+    <link rel="stylesheet" href="../animation/animation.css">
+    <link rel="stylesheet" href="../mobile/mobile.css">
+    <link rel="stylesheet" href="../graphique.css">
+    <script src="../graphique.js"></script>
+    <script src="../animation.js"></script>
+    <title>Accueil</title>
+</head>
+<body>
+    <!--pasport/js-->
+    <header>
+        <div id="menu" class="menu">
+            <div class="fadeInDown">
+                <a href="/">
+                    <img class="logo_tpms" src="../logo/logo-tpms.png" alt="logo-TPMS">
+                </a>
+            </div>
+            <ul id="linkMenu">
+                
+                <li class="flipInY"><a class="border-red" href="tel:+33164429830">TEL:01.64.42.98.30</a></li>
+                <li class="fadeInDown"><a class="border-black" href="/prestations">Prestations</a></li>
+                <li class="fadeInDown"><a class="border-black" href="/actualites">Nos actualités</a></li>
+            </ul>
+            <ul id="reseaux-social">
+                <li><a href="https://fr.linkedin.com/in/tpms-patrizio-arillotta-17917912a"><img class="rs_img" src="../socials/linkedin.png" alt="Linkedin"></a></li>
+                <li><a href="https://www.youtube.com/@tpmslocation883/"><img class="rs_img" src="../socials/youtube.png" alt="Youtube"></a></li>
+                <li><a href="https://www.facebook.com/tpmsterrassement/"><img class="rs_img" src="../socials/facebook.png" alt="Facebook"></a></li>
+                <li><a href="https://www.instagram.com/tpmslocation/"><img class="rs_img" src="../socials/instagram.png" alt="Instgram"></a></li>
+            </ul>
+        </div>
+       
+    </header>
+    <main>
+        
+        <% if(userRole === 1) { %>
+            <p>Ajouter un administrateur</p>
+            <form action="/admin/addAdmin" method="post">
+                <div>
+                    <label for="nameAdmin"></label>
+                    <input type="text" name="nameAdmin" placeholder="Nom">
+                    <label for="emailAdmin"></label>
+                    <input type="text" name="emailAdmin" placeholder="Email">
+                    <label for="mdpAdmin"></label>
+                    <input name="mdpAdmin" id="mdpAdmin"placeholder="Mot de passe">
+                    <input type="submit" value="Ajouter">
+                </div>
+            </form>
+        <% }; %>
+        <section>
+
+            <p>modifier/suprimer : Qualités</p>
+            <article>
+
+                <% qualities.forEach(function(qualitie) { %>
+                    <form action="/admin/updQualities" method="post">
+                        <div>
+                            <label for="qualitiesId"></label>
+                            <input type="hidden" name="qualitiesId" value="<%= qualitie.id %>">
+                            <label for="qualitiesTitle"></label>
+                            <input type="text" name="qualitiesTitle" placeholder="<%= qualitie.title %>">
+                            <label for="qualitiesDescription"></label>
+                            <textarea name="qualitiesDescription" id="" cols="30" rows="10" placeholder="<%= qualitie.description %>"></textarea>
+                            <input type="submit" value="modifier">
+                        </div>
+                    </form>
+                    <form action="/admin/delQualities" method="post">
+                        <label for="delqualitiesId"></label>
+                        <input type="hidden" name="delqualitiesId" value="<%= qualitie.id %>">
+                        <input type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ?');" value="suprimer">
+                    </form>
+                <% }); %>
+                <p>ajouter : Qualités</p>
+                <form action="/admin/addQualities">
+                    <label for="newTitleQualitie"></label>
+                    <input type="text" name="newTitleQualitie" placeholder="titre">
+                    <label for="newDescriptionQualitie"></label>
+                    <textarea name="newDescriptionQualitie" cols="30" rows="10" placeholder="description"></textarea>
+                    <input type="submit" value="ajouter">
+                </form>
+            </article>
+            
+              
+            <!--
+            <p>Constaté les connections : </p>
+            <article>
+
+                <% qualities.forEach(function(qualitie) { %>
+                    <div>
+                        <h2><span><%= qualitie.title %></span></h2>
+                        <p>
+                            <%= qualitie.description %>
+                        </p>
+                    </div>
+                <% }); %>
+            </article>
+            
+            <p>Modifier les utilisateurs : </p>
+            <article>
+
+                <% qualities.forEach(function(qualitie) { %>
+                    <div>
+                        <h2><span><%= qualitie.title %></span></h2>
+                        <p>
+                            <%= qualitie.description %>
+                        </p>
+                    </div>
+                <% }); %>
+            </article>
+            -->
+            <p>Modifier les informations : </p>
+            <article>
+                <% infos.forEach(function(info) { %>
+                    <form action="/admin/updInfo" method="POST">
+                        <div>
+                            <label for="infoId"></label>
+                            <input type="hidden" name="infoId" value="<%= info.id %>">
+                            <p><%= info.type %></p>
+                            <label for="infoValue"></label>
+                            <input type="text" name="infoValue" placeholder="<%= info.value %>">
+                            <input type="submit" value="modifier">
+                        </div>
+                    </form>
+                <% }); %>
+            </article>
+        </section>
+    </main>
+    <footer>
+            
+        <section id="contact_them">
+            <h1>Contactez-nous : </h1>
+            <article>
+                <div>
+                    <ul>
+                        <li>Tél : 01 64 42 98 30</li>
+                        <li>Mail: contact@tpms.fr </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li>Adresse :</li>
+                        <li>ZAC du closeau 9 rue Louis Armand,</li>
+                        <li>Tournan en brie, 77220</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li>Projets réalisés : 305</li>
+                        <li>Clients: 92</li>
+                        <li>Machines de chantiers: 8 </li>
+                    </ul>
+                </div>
+                <div>
+                    <img class="logo_tpms" src="../logo/logo-tpms.png" alt="logo-TPMS">
+                </div>
+                <ul>
+                    <li>Conditions générales de vente</li>
+                    <li>Mentions légales</li>
+                    <li>Politique de confidentialité</li>
+                </ul>
+                
+                
+                <ul>
+                    <li>© 2023 TPMS </li>
+                    <li>| Réalisé par Monades |</li>
+                </ul>
+            </article>
+        </section>
+    </footer>
+</body>
+
+</html>
+

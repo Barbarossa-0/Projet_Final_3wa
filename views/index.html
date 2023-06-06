@@ -1,0 +1,303 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logo/logo-900x900-carre.png" />
+    <link rel="stylesheet" href="asset/root.css">
+    <link rel="stylesheet" href="asset/normalize.css">
+    <link rel="stylesheet" href="asset/basic.css">
+    <link rel="stylesheet" href="asset/header.css">
+    <link rel="stylesheet" href="asset/footer.css">
+    <link rel="stylesheet" href="animation/animation.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="mobile/mobile.css">
+    <script src="animation.js"></script>
+    <script src="icone_box-animation.js"></script>
+    <script src="https://unpkg.com/wheel-indicator"></script>
+    <script src="falseSlider.js"></script>
+    <script src="cookies.js"></script>
+    <title>Accueil</title>
+</head>
+<body>
+    <!--pasport/js-->
+
+    <header>
+        <!--
+        <div>
+            <img src="" alt="imgslider">
+        </div>
+        -->
+        <!-- remplacer par l'image ci-dessus en attendant un slider.
+            <video src=""></video>
+        -->
+        
+        <% if(!cookies) { %>
+            <div id="cookie-bar">
+                <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site. En continuant à naviguer, vous acceptez notre utilisation des cookies.</p>
+                <button id="accept-cookies">Accepter</button>
+            </div>
+        <% }; %>
+        
+        <div id="menu" class="menu">
+            <div class="fadeInDown">
+                <a href="/">
+                    <img class="logo_tpms" src="logo/logo-tpms.png" alt="logo-TPMS">
+                </a>
+            </div>
+            <ul id="linkMenu">
+                
+                <li class="flipInY"><a class="border-red" href="tel:+33164429830">TEL:01.64.42.98.30</a></li>
+                <li class="fadeInDown"><a class="border-black" href="/prestations">Prestations</a></li>
+                <li class="fadeInDown"><a class="border-black" href="/actualites">Nos actualités</a></li>
+            </ul>
+            <ul id="reseaux-social">
+                <li><a href="https://fr.linkedin.com/in/tpms-patrizio-arillotta-17917912a"><img class="rs_img" src="socials/linkedin.png" alt="Linkedin"></a></li>
+                <li><a href="https://www.youtube.com/@tpmslocation883/"><img class="rs_img" src="socials/youtube.png" alt="Youtube"></a></li>
+                <li><a href="https://www.facebook.com/tpmsterrassement/"><img class="rs_img" src="socials/facebook.png" alt="Facebook"></a></li>
+                <li><a href="https://www.instagram.com/tpmslocation/"><img class="rs_img" src="socials/instagram.png" alt="Instgram"></a></li>
+            </ul>
+        </div>
+        <section id="intro">
+            <article id="text_intro">
+                <h1>TPMS:</h1>
+                <div>
+                    
+                        <span id="vingt_cinq">25 ans</span>
+                        <span>d'expérience dans</span>
+                        <p><span id="receve"></span></p>
+                        
+                    
+                    
+                </div>
+            </article>
+            <article id="icone" class="">
+                    
+                    <div id="icone_carre_vrd" class="carre-rondi">
+                        <a href="prestations">
+                            <img class="icone_img" src="icones/vrd-200x200.png" alt="VRD">
+                        </a>
+                    </div>
+                    <div id="icone_carre_assainissement" class="carre-rondi">
+                        <a href="prestations">
+                            <img class="icone_img" src="icones/assainissement-200x200.png" alt="ASSAINISSEMENT">
+                        </a>
+                    </div>
+                    <div id="icone_carre_demolition_terrassement" class="carre-rondi">
+                        <a href="prestations">
+                            <img class="icone_img" src="icones/demolition_terrassement-200x200.png" alt="DEMOLITION & TERRASSEMENT">
+                        </a>
+                    </div>
+                    <div id="icone_carre_amenagement_ext" class="carre-rondi">
+                        <a href="prestations">
+                            <img class="icone_img" src="icones/amenagement_ext-200x200.png" alt="Amenagement Exterieur">
+                        </a>
+                    </div>
+                    <div id="icone_carre_location_chauffeur" class="carre-rondi">
+                        <a href="location">
+                            <img class="icone_img" src="icones/location_chauffeur-200x200.png" alt="LOCATION CHAUFFEUR">
+                        </a>
+                    </div>
+                    
+                    <div id="icone_carre_canon_brumisateur" class="carre-rondi">
+                        <a href="https://canon-brumisateur.fr/">
+                            <img class="icone_img" src="icones/canon_brumisateur-200x200.png" alt="CANONS-BRUMISATEUR">
+                        </a>
+                    </div>
+                
+            </article>
+        </section>
+    </header>
+    <main>
+        <!--
+        <div id="containerParallel">
+            <div id="parallelogramme"></div>
+            <div id="parallelogrammeSecundus"></div>
+        </div>
+        -->
+        <section id="whoYouAre">
+            <article>
+                <h1>Expert en terrassement et assainissement :</h1>
+                <h2>TPMS Terrassement à votre service depuis 25 ans</h2>
+                <p>
+                    <strong>Tpms Terrassement, c'est une équipe d'hommes et de femmes expérimentés et rompus à toutes les situations.</strong>
+                    Implantée au cœur de la Seine-et-Marne et intervenant sur toute la France, la société TPMS TERRASSEMENT est spécialisée dans les travaux publics, le terrassement, l’assainissement, la VRD (voiries et réseaux divers), l’aménagement extérieur, la démolition, la location de pelle et mini-pelle avec chauffeur. De la fouille pour la géotechnique à la reconnaissance de fondations en terrain urbain ou rural, nos domaines d’interventions sont variés et toujours adaptés à la mission que vous nous confiez.
+                </p>
+            </article>
+        </section>
+        <section id="quality">
+            <h1>Nos Qualités</h1>
+            <article>
+                <% qualities.forEach(function(qualitie) { %>
+                    <div>
+                        <h2><span><%= qualitie.title %></span></h2>
+                        <p>
+                            <%= qualitie.description %>
+                        </p>
+                    </div>
+                <% }); %>
+            </article>
+        </section>
+        <section id="encartRealisation">
+            <h1>Nos Réalisations</h1>
+            <div class="containRealisation">
+                <a href="realisations/r1">
+                    <article id="r1" class="OnceRealisation">
+                    
+                        <h3>DÉMOLITION ROLAND GARROS</h3>
+                
+                    </article>
+                </a>
+                <a href="realisations/r2">
+                     <article id="r2" class="OnceRealisation">
+                        
+                        <h3>EJIROUTE - plateforme logistique</h3>
+                    
+                    </article>
+                </a>
+                <a href="realisations/r3">
+                    <article id="r3" class="OnceRealisation">
+                        
+                        <h3>GIFI - Réfection du parking</h3>
+                    
+                    </article>
+                </a>
+                <a href="realisations/r4">
+                    <article id="r4" class="OnceRealisation">
+                        
+                        <h3>Les Bureaux d'études et les avant trous</h3>
+                    
+                    </article>
+                </a>
+                <a href="realisations/r5">
+                    <article id="r5" class="OnceRealisation">
+                        
+                        <h3>BSGI Résidence du lac</h3>
+                    
+                    </article>
+                </a>
+                <a href="realisations/r6">
+                    <article id="r6" class="OnceRealisation">
+                        
+                        <h3>Gestimpact - VRD</h3>
+                    
+                    </article>
+                </a>
+                <a href="realisations/r7">
+                    <article id="r7" class="OnceRealisation">
+                        
+                        <h3>Bouchard Agriculture Aménagements Exterieur</h3>
+                    
+                    </article>
+                </a>
+                <a href="realisations/r8">
+                    <article id="r8" class="OnceRealisation">
+                        
+                        <h3><h3>Gestimpact - VRD - Aménagement extérieur</h3></h3>
+                    
+                    </article>
+                </a>
+            </div>
+        </section>
+        <!--
+        <section id="falseSlider" class="falseSlider">
+            <h1>Nos Réalisations</h1>
+            <div id="containSlider" class="containSlider">
+                <article id="r1" class="image-wrapper ">
+                    
+                        <h3>DÉMOLITION ROLAND GARROS</h3>
+                    
+                </article>
+                <article id="r2" class="image-wrapper">
+                    
+                    <h3>EJIROUTE - plateforme logistique</h3>
+                
+                </article>
+                <article id="r3" class="image-wrapper ">
+                    
+                    <h3>GIFI - Réfection du parking</h3>
+                
+                </article>
+                <article id="r4" class="image-wrapper ">
+                    
+                    <h3>Les Bureaux d'études et les avant trous</h3>
+                
+                </article>
+                <article id="r5" class="image-wrapper ">
+                    
+                    <h3>BSGI Résidence du lac</h3>
+                
+                </article>
+                <article id="r6" class="image-wrapper ">
+                    
+                    <h3>Gestimpact - VRD</h3>
+                
+                </article>
+                <article id="r7" class="image-wrapper ">
+                    
+                    <h3>Bouchard Agriculture Aménagements Exterieur</h3>
+                
+                </article>
+                <article id="r8" class="image-wrapper ">
+                    
+                    <h3><h3>Gestimpact - VRD - Aménagement extérieur</h3></h3>
+                
+                </article>
+            </div>
+            <div id="containActualSlide" class="containActualSlide">
+                <article id="r1" class="realisation">
+                    
+                        <h3>DÉMOLITION ROLAND GARROS</h3>
+                    
+                </article>
+            </div>
+        </section>
+        -->
+    </main>
+    <footer>
+            
+        <section id="contact_them">
+            <h1>Contactez-nous : </h1>
+                <article>
+                    <div>
+                        <ul>
+                            <li><%= tel %></li>
+                            <li><%= mail %></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Adresse :</li>
+                            <li><%= adresse %></li>
+                            <li><%= ville %></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><%= projetRealise %></li>
+                            <li><%= client %></li>
+                            <li><%= machineChantier %></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="logo/logo-tpms.png" alt="logo-TPMS">
+                    </div>
+                    <ul>
+                        <li>Conditions générales de vente</li>
+                        <li>Mentions légales</li>
+                        <li>Politique de confidentialité</li>
+                    </ul>
+                    
+                    
+                    <ul>
+                        <li>© 2023 TPMS </li>
+                        <li>| Réalisé par Monades |</li>
+                    </ul>
+                </article>
+            
+        </section>
+    </footer>
+</body>
+
+</html>
+
