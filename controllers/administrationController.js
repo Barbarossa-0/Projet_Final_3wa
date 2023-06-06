@@ -4,7 +4,7 @@ import {getInfos, updateInfos} from '../models/infosModel.js';
 
 import {getQualities, upadteQualitie, insertQualitie, deleteQualitie} from '../models/qualitiesModel.js';
 import {generateToken, verifyToken} from '../controllers/token.js'
-import {getUsers, getFoundUser} from '../models/userModel.js'
+import {getUsers, getFoundUser, insertAdmin, deleteAdmin} from '../models/userModel.js'
 import {cryptagHash, cryptagComp} from '../models/cryptagon.js'
 const router = express.Router();
 
@@ -24,30 +24,31 @@ const signIn = router.post('/admin/signIn', async (req, res) => {
     //const userRole = getUserRole();
     const qualities = await getQualities();
     
-    const userId = 0
     const name = req.body.username
     const email = req.body.email
     const mdp = req.body.password
 
     const userData = await getFoundUser(name, email);
 
-     
     const dbPass = userData[0].mdp
+    
     const compatibleUser = await cryptagComp(mdp, dbPass)
-    console.log(userData.role)
+    const id = userData[0].id
+    const role = userData[0].role_id
+    
     if(compatibleUser){
-        const token = generateToken(userId, name, email)
-        req.session.userId = userData[0].id
-        req.session.userName = userData[0].name
-        req.session.userEmail = userData[0].email
-        req.session.userRole = userData[0].role
+        const token = generateToken(id, name, email)
+        req.session.userId = id
+        req.session.userName = name
+        req.session.userEmail = email
+        req.session.userRole = role
         req.session.token = token;
 
         res.render("administration/administration", {
             infos: infos,
             //connections: connections,
-            userRole: userData[0].role,
-            qualities: qualities,
+            userRole: role,
+            qualities: qualities
 
         });
 
@@ -71,11 +72,12 @@ const updInfo = router.post('/admin/updInfo', verifyToken, async (req, res) => {
     //const connections = getConnection();
     //const userRole = getUserRole();
     const qualities = await getQualities();
-
+    const role = req.session.userRole 
     res.render("administration/administration", {
         infos: infos,
         //connections: connections,
         //userRole: userRole,
+        userRole: role,
         qualities: qualities
     });
 });
@@ -93,11 +95,12 @@ const updQualities = router.post('/admin/updQualities', verifyToken, async (req,
     //const connections = getConnection();
     //const userRole = getUserRole();
     const qualities = await getQualities();
-
+    const role = req.session.userRole 
     res.render("administration/administration", {
         infos: infos,
         //connections: connections,
         //userRole: userRole,
+        userRole: role,
         qualities: qualities
     });
 });
@@ -114,10 +117,12 @@ const addQualities = router.post('/admin/addQualities', verifyToken, async (req,
     //const connections = getConnection();
     //const userRole = getUserRole();
     const qualities = await getQualities();
+    const role = req.session.userRole 
     res.render("administration/administration", {
         infos: infos,
         //connections: connections,
         //userRole: userRole,
+        userRole: role,
         qualities: qualities
     });
 });
@@ -133,14 +138,62 @@ const delQualities = router.post('/admin/delQualities', verifyToken, async (req,
     //const connections = getConnection();
     //const userRole = getUserRole();
     const qualities = await getQualities();
-    
+    const role = req.session.userRole 
     res.render("administration/administration", {
+        
         infos: infos,
         //connections: connections,
         //userRole: userRole,
+        userRole: role,
         qualities: qualities
     });
 });
 
+const addAdmin = router.post('/admin/addAdmin', verifyToken, async (req, res) => {
+    
+    const name = req.body.nameAdmin
+    const email = req.body.emailAdmin
+    const mdp = req.body.mdpAdmin
+    const cryptedMdp = await cryptagHash(mdp)
+    console.log(cryptedMdp)
+    const request = await insertAdmin(name, email, cryptedMdp);
+    console.log(request)
 
-export { administrationController, signIn, updInfo, updQualities, addQualities, delQualities };
+    const infos = await getInfos();
+    //const connections = getConnection();
+    //const userRole = getUserRole();
+    const qualities = await getQualities();
+    const role = req.session.userRole 
+    res.render("administration/administration", {
+        
+        infos: infos,
+        //connections: connections,
+        //userRole: userRole,
+        userRole: role,
+        qualities: qualities
+    });
+});
+
+const suppAdmin = router.post('/admin/suppAdmin', verifyToken, async (req, res) => {
+    
+    const id = '?'
+
+    const request = await deleteAdmin(id);
+    console.log(request)
+
+    const infos = await getInfos();
+    //const connections = getConnection();
+    //const userRole = getUserRole();
+    const qualities = await getQualities();
+    const role = req.session.userRole 
+    res.render("administration/administration", {
+        
+        infos: infos,
+        //connections: connections,
+        //userRole: userRole,
+        userRole: role,
+        qualities: qualities
+    });
+});
+
+export { administrationController, signIn, updInfo, updQualities, addQualities, delQualities, addAdmin, suppAdmin   };

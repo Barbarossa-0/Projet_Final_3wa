@@ -42,6 +42,7 @@
        
     </header>
     <main>
+        <h1>ADMINISTRATION</h1>
         
         <% if(userRole === 1) { %>
             <p>Ajouter un administrateur</p>
@@ -54,6 +55,16 @@
                     <label for="mdpAdmin"></label>
                     <input name="mdpAdmin" id="mdpAdmin"placeholder="Mot de passe">
                     <input type="submit" value="Ajouter">
+                </div>
+            </form>
+            <p>Supprimer un administrateur</p>
+            
+            <form action="/admin/suppAdmin" method="post">
+                <div>
+                    <label for="suppAdmin">Choississez un Utilisateur :</label>
+                    <select name="suppAdmin" id="suppAdmin">
+                        <option value="HOLA"></option>
+                    </select>
                 </div>
             </form>
         <% }; %>
