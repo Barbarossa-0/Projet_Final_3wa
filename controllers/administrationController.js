@@ -1,17 +1,36 @@
 import express from 'express';
-
 import {getInfos, updateInfos} from '../models/infosModel.js';
-
 import {getQualities, upadteQualitie, insertQualitie, deleteQualitie} from '../models/qualitiesModel.js';
 import {generateToken, verifyToken} from '../controllers/token.js'
 import {getUsers, getFoundUser, insertAdmin, deleteAdmin} from '../models/userModel.js'
 import {cryptagHash, cryptagComp} from '../models/cryptagon.js'
+
 const router = express.Router();
+const numberRegex = /^\d+$/;
 
 const administrationController = router.get('/admin', async (req, res) => {
+
+    const existCookies = req.cookies
+    var cookieAccepted = false
+    var cookies = false
+
+    if(existCookies){
+        var cookieAccepted = true;
+    }else{
+        var cookieAccepted = req.cookies.cookieAccepted
+    }
+    
+    if (!cookieAccepted) {
+        cookies = false
+    }
+    else{
+        cookies = true
+    }
+
     var error = false
     res.render("administration/login", {
-        error: error
+        error: error,
+        cookies: cookies
     });
 });
 
@@ -43,17 +62,18 @@ const signIn = router.post('/admin/signIn', async (req, res) => {
         req.session.userEmail = email
         req.session.userRole = role
         req.session.token = token;
-
+        const listUsers = await getUsers();
         res.render("administration/administration", {
             infos: infos,
             //connections: connections,
             userRole: role,
-            qualities: qualities
-
+            qualities: qualities,
+            listUsers: listUsers,
+            error: error
         });
 
     }else{
-        error = 'Incorrect veuilliez ressayer.'
+        error = 'Invalide veuilliez réessayer.'
         res.render("administration/login", {
             error: error
         });
@@ -63,89 +83,128 @@ const signIn = router.post('/admin/signIn', async (req, res) => {
 });
 
 const updInfo = router.post('/admin/updInfo', verifyToken, async (req, res) => {
+    var error = false
     const id = req.body.infoId
     const value = req.body.infoValue
-    const request = await updateInfos(id, value);
-    console.log(request)
 
+    if (id.length === 0 || !id.match(numberRegex)) {
+        error = 'Informations Non Identifier.'
+    }
+    if (value.length === 0 || value.length === 61) {
+        error = 'Informations vide ou trop longue.'
+    }
+    if(!error){
+        const request = await updateInfos(id, value);
+    }
+
+    const listUsers = await getUsers();
     const infos = await getInfos();
-    //const connections = getConnection();
-    //const userRole = getUserRole();
     const qualities = await getQualities();
+
     const role = req.session.userRole 
+
     res.render("administration/administration", {
         infos: infos,
-        //connections: connections,
-        //userRole: userRole,
+        listUsers: listUsers,
         userRole: role,
-        qualities: qualities
+        qualities: qualities,
+        error:error
     });
 });
 
 const updQualities = router.post('/admin/updQualities', verifyToken, async (req, res) => {
-    
+    var error = false
     const id = req.body.qualitiesId
     const title = req.body.qualitiesTitle
     const description = req.body.qualitiesDescription
 
-    const request = await upadteQualitie(id, title, description);
-    console.log(request)
+    if (id.length === 0 || !id.match(numberRegex)) {
+        error = 'Qualités Non Identifier.'
+    }
+    if (title.length === 0 || title.length === 61) {
+        error = 'Titre vide ou trop long.'
+    }
+    if (description.length === 0 || description.length === 351) {
+        error = 'Description vide ou trop longue.'
+    }
+    if(!error){
+        const request = await upadteQualitie(id, title, description);
+    }
 
+    const listUsers = await getUsers();
     const infos = await getInfos();
-    //const connections = getConnection();
-    //const userRole = getUserRole();
     const qualities = await getQualities();
+
     const role = req.session.userRole 
+
     res.render("administration/administration", {
         infos: infos,
-        //connections: connections,
-        //userRole: userRole,
+        listUsers: listUsers,
         userRole: role,
-        qualities: qualities
+        qualities: qualities,
+        error:error
     });
 });
 
 const addQualities = router.post('/admin/addQualities', verifyToken, async (req, res) => {
-    
+
+    var error = false
+
     const title = req.body.newTitleQualitie
     const description = req.body.newDescriptionQualitie
 
-    const request = await insertQualitie(title, description);
-    console.log(request)
+    if (title.length === 0 || title.length === 61) {
+        error = 'Titre vide ou trop long.'
+    }
+    if (description.length === 0 || description.length === 351) {
+        error = 'Description vide ou trop longue.'
+    }
+    if(!error){
+        const request = await insertQualitie(title, description);
+    }
 
+    const listUsers = await getUsers();
     const infos = await getInfos();
-    //const connections = getConnection();
-    //const userRole = getUserRole();
     const qualities = await getQualities();
+
     const role = req.session.userRole 
+
     res.render("administration/administration", {
         infos: infos,
-        //connections: connections,
-        //userRole: userRole,
+        listUsers: listUsers,
         userRole: role,
-        qualities: qualities
+        qualities: qualities,
+        error:error
     });
 });
 
 const delQualities = router.post('/admin/delQualities', verifyToken, async (req, res) => {
-    
+
+    var error = false
+
     const id = req.body.delqualitiesId
 
-    const request = await deleteQualitie(id);
-    console.log(request)
+    if (id.length === 0 || !id.match(numberRegex)) {
+        error = 'Qualités Non Identifier.'
+    }
+    if(!error){
+        const request = await deleteQualitie(id);
+    }
+
+    
 
     const infos = await getInfos();
-    //const connections = getConnection();
-    //const userRole = getUserRole();
     const qualities = await getQualities();
+    const listUsers = await getUsers();
+
     const role = req.session.userRole 
+
     res.render("administration/administration", {
-        
+        listUsers: listUsers,
         infos: infos,
-        //connections: connections,
-        //userRole: userRole,
         userRole: role,
-        qualities: qualities
+        qualities: qualities,
+        error:error
     });
 });
 
@@ -163,9 +222,10 @@ const addAdmin = router.post('/admin/addAdmin', verifyToken, async (req, res) =>
     //const connections = getConnection();
     //const userRole = getUserRole();
     const qualities = await getQualities();
+    const listUsers = await getUsers();
     const role = req.session.userRole 
     res.render("administration/administration", {
-        
+        listUsers: listUsers,
         infos: infos,
         //connections: connections,
         //userRole: userRole,
@@ -175,25 +235,34 @@ const addAdmin = router.post('/admin/addAdmin', verifyToken, async (req, res) =>
 });
 
 const suppAdmin = router.post('/admin/suppAdmin', verifyToken, async (req, res) => {
-    
-    const id = '?'
 
-    const request = await deleteAdmin(id);
-    console.log(request)
+    var error = false 
+
+    const id = req.body.suppAdmin
+
+    if (id.length === 0 || !id.match(numberRegex)) {
+        error = 'Admin Non Identifier.'
+    }
+    if(!error){
+        const request = await deleteAdmin(id);
+    }
 
     const infos = await getInfos();
-    //const connections = getConnection();
-    //const userRole = getUserRole();
     const qualities = await getQualities();
-    const role = req.session.userRole 
+    const listUsers = await getUsers();
+
+    const role = req.session.userRole
+
     res.render("administration/administration", {
-        
         infos: infos,
-        //connections: connections,
-        //userRole: userRole,
         userRole: role,
-        qualities: qualities
+        qualities: qualities,
+        listUsers: listUsers,
+        error:error
     });
+    
+     
+    
 });
 
 export { administrationController, signIn, updInfo, updQualities, addQualities, delQualities, addAdmin, suppAdmin   };

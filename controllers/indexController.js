@@ -2,20 +2,32 @@ import express from 'express';
 import {getIndex}  from '../models/indexModel.js';
 import {getInfos} from '../models/infosModel.js';
 import {getQualities} from '../models/qualitiesModel.js'
+
 const router = express.Router();
 
 const indexController = router.get('/', async (req, res) => {
 
-    const cookieAccepted = req.cookies.cookieAccepted;
+    const existCookies = req.cookies
+    var cookieAccepted = false
     var cookies = false
+
+    if(existCookies){
+        var cookieAccepted = true;
+    }else{
+        var cookieAccepted = req.cookies.cookieAccepted
+    }
+    
+    if (!cookieAccepted) {
+        cookies = false
+    }
+    else{
+        cookies = true
+    }
+
     const infos = await getInfos();
     const qualities = await getQualities();
     const index = await getIndex();
      
-
-    console.log('les infos:' + infos)
-    console.log(index + 'index.html');
-
     var tel = "Tél : ";
     var mail = "Mail : ";
     var ComparAdresse = "Adresse : ";
@@ -26,6 +38,7 @@ const indexController = router.get('/', async (req, res) => {
     var client = "Clients : ";
     var machineChantier = "Machines de chantiers : ";
     var noMatches = "";
+
     infos.forEach(element => {
         if(element.type === tel){
             tel += element.value;
@@ -53,12 +66,6 @@ const indexController = router.get('/', async (req, res) => {
         console.log(`le type ne correspond pas : ${noMatches}`);
     }
     
-    if (!cookieAccepted) {
-        cookies = false
-    }
-    else{
-        cookies = true
-    }
     res.render("index", {
         tel: tel,
         mail: mail, 

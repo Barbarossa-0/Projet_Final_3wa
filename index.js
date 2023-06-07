@@ -45,7 +45,7 @@ import {locationController} from './controllers/locationController.js';
 import {actualitesController} from './controllers/actualitesController.js';
 import {articleController} from './controllers/articleController.js';
 import {realisationsController} from './controllers/realisationsController.js'
-import {administrationController, signIn, updInfo, updQualities, addQualities, delQualities} from './controllers/administrationController.js';
+import {administrationController, signIn, updInfo, updQualities, addQualities, delQualities, addAdmin, suppAdmin} from './controllers/administrationController.js';
 import {cookieController} from './controllers/cookieController.js';
 
 
@@ -63,8 +63,11 @@ app.use('/',
         updQualities,
         addQualities,
         delQualities,
-        cookieController
+        cookieController,
+        addAdmin, 
+        suppAdmin
         );
+
 
 app.listen(port, () => {
     console.log(`Listening on port http://localhost:${port}/`);

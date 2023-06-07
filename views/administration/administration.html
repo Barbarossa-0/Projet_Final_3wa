@@ -13,13 +13,19 @@
     <link rel="stylesheet" href="../animation/animation.css">
     <link rel="stylesheet" href="../mobile/mobile.css">
     <link rel="stylesheet" href="../graphique.css">
+    <link rel="stylesheet" href="../temp.css">
+    <script src="../alertConfirm.js"></script>
     <script src="../graphique.js"></script>
     <script src="../animation.js"></script>
+    <script src="../alertErr.js"></script>
     <title>Accueil</title>
 </head>
 <body>
     <!--pasport/js-->
     <header>
+        <% if(error) { %>
+            <div id="error-data" data-error="<%= error %>"></div>
+        <% }; %>
         <div id="menu" class="menu">
             <div class="fadeInDown">
                 <a href="/">
@@ -54,17 +60,19 @@
                     <input type="text" name="emailAdmin" placeholder="Email">
                     <label for="mdpAdmin"></label>
                     <input name="mdpAdmin" id="mdpAdmin"placeholder="Mot de passe">
-                    <input type="submit" value="Ajouter">
+                    <input id="addAdmin" type="submit" value="Ajouter">
                 </div>
             </form>
             <p>Supprimer un administrateur</p>
-            
             <form action="/admin/suppAdmin" method="post">
                 <div>
                     <label for="suppAdmin">Choississez un Utilisateur :</label>
                     <select name="suppAdmin" id="suppAdmin">
-                        <option value="HOLA"></option>
+                        <% listUsers.forEach( function(listUser){ %>
+                            <option value="<%= listUser.id %>"><%= listUser.name %></option>
+                        <% }); %>
                     </select>
+                    <input id="suppAdminButt" type="submit" value="Supprimer">
                 </div>
             </form>
         <% }; %>
@@ -82,13 +90,13 @@
                             <input type="text" name="qualitiesTitle" placeholder="<%= qualitie.title %>">
                             <label for="qualitiesDescription"></label>
                             <textarea name="qualitiesDescription" id="" cols="30" rows="10" placeholder="<%= qualitie.description %>"></textarea>
-                            <input type="submit" value="modifier">
+                            <input id="updQualities" type="submit" value="modifier">
                         </div>
                     </form>
                     <form action="/admin/delQualities" method="post">
                         <label for="delqualitiesId"></label>
                         <input type="hidden" name="delqualitiesId" value="<%= qualitie.id %>">
-                        <input type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ?');" value="suprimer">
+                        <input id="delQualities" type="submit" value="suprimer">
                     </form>
                 <% }); %>
                 <p>ajouter : Qualités</p>
@@ -97,38 +105,9 @@
                     <input type="text" name="newTitleQualitie" placeholder="titre">
                     <label for="newDescriptionQualitie"></label>
                     <textarea name="newDescriptionQualitie" cols="30" rows="10" placeholder="description"></textarea>
-                    <input type="submit" value="ajouter">
+                    <input id="addQualities" type="submit" value="ajouter">
                 </form>
             </article>
-            
-              
-            <!--
-            <p>Constaté les connections : </p>
-            <article>
-
-                <% qualities.forEach(function(qualitie) { %>
-                    <div>
-                        <h2><span><%= qualitie.title %></span></h2>
-                        <p>
-                            <%= qualitie.description %>
-                        </p>
-                    </div>
-                <% }); %>
-            </article>
-            
-            <p>Modifier les utilisateurs : </p>
-            <article>
-
-                <% qualities.forEach(function(qualitie) { %>
-                    <div>
-                        <h2><span><%= qualitie.title %></span></h2>
-                        <p>
-                            <%= qualitie.description %>
-                        </p>
-                    </div>
-                <% }); %>
-            </article>
-            -->
             <p>Modifier les informations : </p>
             <article>
                 <% infos.forEach(function(info) { %>
@@ -139,7 +118,7 @@
                             <p><%= info.type %></p>
                             <label for="infoValue"></label>
                             <input type="text" name="infoValue" placeholder="<%= info.value %>">
-                            <input type="submit" value="modifier">
+                            <input id="updInfo" type="submit" value="modifier">
                         </div>
                     </form>
                 <% }); %>

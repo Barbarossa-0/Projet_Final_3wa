@@ -13,10 +13,17 @@
     <link rel="stylesheet" href="animation/animation.css">
     <link rel="stylesheet" href="mobile/mobile.css">
     <script src="animation.js"></script>
+    <script src="cookies.js"></script>
     <title>Nos Actualités</title>
 </head>
 <body>
     <header>
+        <% if(!cookies) { %>
+            <div id="cookie-bar">
+                <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site. En continuant à naviguer, vous acceptez notre utilisation des cookies.</p>
+                <button id="accept-cookies">Accepter</button>
+            </div>
+        <% }; %>
         <div id="menu" class="menu">
             <div class="fadeInDown">
                 <a href="/">

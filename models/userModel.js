@@ -1,8 +1,7 @@
 import db from './database/database.js'
 
 const getUsers = async () => {
-    const req = 'SELECT * FROM users'
-    
+    const req = 'SELECT users.id, users.name, users.email, users.role_id FROM users WHERE users.id != 1 AND role_id != 1'
     const results = await new Promise( (resolve, reject) => {
         db.query(req, (err, res) => {
             if (err) {

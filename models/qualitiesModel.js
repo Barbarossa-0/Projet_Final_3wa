@@ -1,7 +1,7 @@
 import db from './database/database.js'
 
 const getQualities = async () => {
-    const req = 'SELECT * FROM qualities;'
+    const req = 'SELECT qualities.id, qualities.title, qualities.description FROM qualities;'
     const results = await new Promise( (resolve, reject) => {
         db.query(req, (err, res) => {
             if (err) {
