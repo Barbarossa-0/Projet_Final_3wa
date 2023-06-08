@@ -1,0 +1,18 @@
+h1 {
+    text-align: center;
+    top: 25%;
+    padding-top: 1vw;
+  }
+main{
+    text-align: center;
+}
+form{
+    margin-top: 4vw;
+    margin-right: 3vw;
+    margin-bottom: 3vw;
+    margin-left: 4vw;
+}
+form div{
+    padding:0.5vw
+}
+

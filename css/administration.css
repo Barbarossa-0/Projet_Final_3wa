@@ -4,7 +4,6 @@ body {
     font-family: Arial, sans-serif;
   }
   
-  /* Contenu principal */
   main {
     display: flex;
     flex-direction: column;
@@ -24,7 +23,6 @@ body {
     margin-bottom: 10px;
   }
   
-  /* Formulaires */
   form {
     margin-bottom: 20px;
   }
@@ -44,7 +42,7 @@ body {
   }
   
   input[type="submit"] {
-    background-color: #4caf50;
+    background-color: var(--red);
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -61,7 +59,6 @@ body {
     border: 1px solid #ccc;
   }
   
-  /* Articles */
   section {
     margin-top: 20px;
   }
@@ -69,17 +66,47 @@ body {
   article {
     margin-bottom: 20px;
   }
-  
-  /* Média queries pour la réactivité */
-  @media (min-width: 768px) {
-    main {
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: flex-start;
-      text-align: left;
-    }
-  
-    section {
-      width: 50%;
-    }
+  @media screen and (min-width: 360px) {
+    /*RIEN*/
+}
+@media screen and (min-width: 480px) {
+  .flxform{
+    display: flex;
+
   }
+  .flxform div{
+    margin: 1vw;
+
+  }
+  .qualitygrid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2.5%;
+    padding: 2% 5% 3% 5%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .qualitygrid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2.5%;
+    padding: 2% 5% 3% 5%;
+  }
+}
+@media screen and (min-width: 1024px){
+  .qualitygrid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2.5%;
+    padding: 2% 5% 3% 5%;
+  }
+}
+@media screen and (min-width: 1280px){
+
+}
+@media screen and (min-width: 1440px){
+
+}
+@media screen and (min-width: 1920px){
+
+}

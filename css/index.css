@@ -51,6 +51,9 @@ header{
 main{
     font-size:clamp(1rem, 1.6vw, 2rem);
 }
+main h1,h2{
+    text-align: center;
+}
 #whoYouAre{
     text-align: justify;
     max-width: 75%;
@@ -60,7 +63,7 @@ main{
     text-align: center;
     text-decoration: underline;
 }
-#quality article {
+#quality #qualityContainer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2.5%;
@@ -70,11 +73,11 @@ main{
     text-align: center;
     text-decoration: underline;
 }
-#quality article div{
+#quality #qualityContainer div p{
     text-align: justify;
     padding:5px;
 }
-#quality article div h2 span{
+#quality #qualityContainer div h3 span{
     background-color: var(--black);
     color:var(--white);
     font-weight: bold;
@@ -105,74 +108,7 @@ main{
     font-size: 16px;
     cursor: pointer;
 }
-/**************SLIDER**************/
-/*
-.falseSlider{
-    text-align: center;   
-}
-.falseSlider h1 {
-    text-decoration:underline black;
-}
 
-.containSlider{
-    overflow-x: scroll;
-    /*scroll-snap-type: x proximity;*/
-    /*scrollbar-width: none;*/
-    /*
-    white-space:nowrap;
-    display: flex;
-    z-index: -10;
-    position: absolute;
-    width: 98%;
-}
-
-
-.image-wrapper{
-    display: inline-block;
-    width: 600px;
-    height: 350px;
-    flex: 1 0 600px;
-    margin-right: 5rem;
-    scroll-snap-align: start;
-    position: relative;
-    text-align: center;
-    border-radius: 5px;
-    filter: blur(3px);
-    z-index: 0;
-}
-.visible {
-    filter: none;
-    z-index: 1;
-}   
-.image-wrapper h3{
-    
-}
-.realisation{
-    /*
-    flex: 1 0 100%;
-    margin-right: 1rem;
-    scroll-snap-align: start;
-    position: relative;
-    filter: blur(2px);
-    z-index: 0;
-    */
-    /*
-    display: inline-block;
-    width: 700px;
-    height: 350px;
-    text-align: center;
-    border-radius: 5px;   
-}
-.realisation h3{
-    color: white;
-    font-style: oblique;
-    position: absolute;
-    margin-left: 10px;
-    /*left: 0;*/
-    /*
-}
-
-*/
 #r1{
     background-image: linear-gradient( rgba(255, 255, 255, 0.5), rgba(75, 78, 91, 0.37) ), url("realisation/20180709_132544-1024x576.jpg");
     background-color: transparent;
@@ -256,7 +192,7 @@ main{
     .carre-rondi img{
         width: 100%;
     }
-    #quality article {
+    #quality #qualityContainer {
         padding: 2% 10% 3% 10%;
     }
     .containRealisation{
@@ -301,7 +237,7 @@ main{
     main {
         font-size: clamp(1rem, 1.6vw, 1.5rem);
     }
-    #quality article {
+    #quality #qualityContainer {
         grid-template-columns: repeat(3, 1fr);
     }
     .containRealisation{

@@ -49,20 +49,5 @@ main{
     text-align: center;
     text-decoration: underline;
 }
-#containerParallel{
-    position: absolute;
-    z-index: -1;
-}
-#parallelogramme {
-    height: 0;
-    width: 100%;
-    border-right: 97vw solid transparent;
-    border-bottom: 20vw solid var(--backGrey);
-}
-#parallelogrammeSecundus {
-    height: 0;
-    width: 100%;
-    border-top: 20vw solid var(--backGrey);
-    border-left: 97vw solid transparent;
-}
+
   

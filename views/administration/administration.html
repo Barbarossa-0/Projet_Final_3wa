@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="logo/logo-900x900-carre.png" />
+    <link rel="icon" type="image/png" href="logo/logo-900x900-carre.png">
     <link rel="stylesheet" href="../asset/root.css">
     <link rel="stylesheet" href="../asset/normalize.css">
     <link rel="stylesheet" href="../asset/basic.css">
@@ -20,7 +21,6 @@
     <title>Accueil</title>
 </head>
 <body>
-    <!--pasport/js-->
     <header>
         <% if(error) { %>
             <div id="error-data" data-error="<%= error %>"></div>
@@ -32,7 +32,6 @@
                 </a>
             </div>
             <ul id="linkMenu">
-                
                 <li class="flipInY"><a class="border-red" href="tel:+33164429830">TEL:01.64.42.98.30</a></li>
                 <li class="fadeInDown"><a class="border-black" href="/prestations">Prestations</a></li>
                 <li class="fadeInDown"><a class="border-black" href="/actualites">Nos actualités</a></li>
@@ -44,21 +43,25 @@
                 <li><a href="https://www.instagram.com/tpmslocation/"><img class="rs_img" src="../socials/instagram.png" alt="Instgram"></a></li>
             </ul>
         </div>
-       
     </header>
     <main>
         <h1>ADMINISTRATION</h1>
-        
         <% if(userRole === 1) { %>
             <p>Ajouter un administrateur</p>
             <form action="/admin/addAdmin" method="post">
                 <div>
-                    <label for="nameAdmin"></label>
-                    <input type="text" name="nameAdmin" placeholder="Nom">
-                    <label for="emailAdmin"></label>
-                    <input type="text" name="emailAdmin" placeholder="Email">
-                    <label for="mdpAdmin"></label>
-                    <input name="mdpAdmin" id="mdpAdmin"placeholder="Mot de passe">
+                    <div class="flxform">
+                        <div>
+                            <label for="nameAdmin">Nom</label>
+                            <input type="text" name="nameAdmin" placeholder="Nom">
+                        </div>
+                        <div>
+                            <label for="emailAdmin">Email</label>
+                            <input type="text" name="emailAdmin" placeholder="Email">
+                        </div>
+                    </div>
+                    <label for="mdpAdmin">MDP</label>
+                    <input name="mdpAdmin" id="mdpAdmin" placeholder="Mot de passe">
                     <input id="addAdmin" type="submit" value="Ajouter">
                 </div>
             </form>
@@ -76,59 +79,64 @@
             </form>
         <% }; %>
         <section>
-
-            <p>modifier/suprimer : Qualités</p>
+            <h2>Data Entreprise</h2>
             <article>
-
+                <h3>Qualités</h3>
+                <p>modifier/suprimer : </p>
+                <div class="qualitygrid">
                 <% qualities.forEach(function(qualitie) { %>
+                    <div>
                     <form action="/admin/updQualities" method="post">
                         <div>
-                            <label for="qualitiesId"></label>
+                            <label for="qualitiesId" type="hidden"></label>
                             <input type="hidden" name="qualitiesId" value="<%= qualitie.id %>">
-                            <label for="qualitiesTitle"></label>
+                            <label for="qualitiesTitle">Titre</label>
                             <input type="text" name="qualitiesTitle" placeholder="<%= qualitie.title %>">
-                            <label for="qualitiesDescription"></label>
-                            <textarea name="qualitiesDescription" id="" cols="30" rows="10" placeholder="<%= qualitie.description %>"></textarea>
+                            <label for="qualitiesDescription">Desc</label>
+                            <textarea name="qualitiesDescription" id="qualitiesDescription" cols="30" rows="10" placeholder="<%= qualitie.description %>"></textarea>
                             <input id="updQualities" type="submit" value="modifier">
                         </div>
                     </form>
                     <form action="/admin/delQualities" method="post">
-                        <label for="delqualitiesId"></label>
+                        <label for="delqualitiesId" type="hidden"></label>
                         <input type="hidden" name="delqualitiesId" value="<%= qualitie.id %>">
                         <input id="delQualities" type="submit" value="suprimer">
                     </form>
+                    </div>
                 <% }); %>
+                </div>
                 <p>ajouter : Qualités</p>
                 <form action="/admin/addQualities">
-                    <label for="newTitleQualitie"></label>
+                    <label for="newTitleQualitie">Titre</label>
                     <input type="text" name="newTitleQualitie" placeholder="titre">
-                    <label for="newDescriptionQualitie"></label>
+                    <label for="newDescriptionQualitie">Desc</label>
                     <textarea name="newDescriptionQualitie" cols="30" rows="10" placeholder="description"></textarea>
                     <input id="addQualities" type="submit" value="ajouter">
                 </form>
             </article>
-            <p>Modifier les informations : </p>
             <article>
+                <h3>Modifier les informations : </h3>
+                <div class="qualitygrid">
                 <% infos.forEach(function(info) { %>
                     <form action="/admin/updInfo" method="POST">
                         <div>
-                            <label for="infoId"></label>
+                            <label for="infoId" type="hidden">Id</label>
                             <input type="hidden" name="infoId" value="<%= info.id %>">
                             <p><%= info.type %></p>
-                            <label for="infoValue"></label>
+                            <label for="infoValue">Infos</label>
                             <input type="text" name="infoValue" placeholder="<%= info.value %>">
                             <input id="updInfo" type="submit" value="modifier">
                         </div>
                     </form>
                 <% }); %>
+                </div>
             </article>
         </section>
     </main>
     <footer>
-            
         <section id="contact_them">
-            <h1>Contactez-nous : </h1>
-            <article>
+            <h2>Contactez-nous : </h2>
+            <div class="concat">
                 <div>
                     <ul>
                         <li>Tél : 01 64 42 98 30</li>
@@ -157,13 +165,11 @@
                     <li>Mentions légales</li>
                     <li>Politique de confidentialité</li>
                 </ul>
-                
-                
                 <ul>
                     <li>© 2023 TPMS </li>
                     <li>| Réalisé par Monades |</li>
                 </ul>
-            </article>
+            </div>
         </section>
     </footer>
 </body>
