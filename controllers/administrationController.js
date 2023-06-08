@@ -28,6 +28,7 @@ const administrationController = router.get('/admin', async (req, res) => {
     }
 
     var error = false
+
     res.render("administration/login", {
         error: error,
         cookies: cookies
@@ -38,15 +39,23 @@ const signIn = router.post('/admin/signIn', async (req, res) => {
 
     var error = false
     
-    const infos = await getInfos();
-    //const connections = getConnection();
-    //const userRole = getUserRole();
-    const qualities = await getQualities();
-    
     const name = req.body.username
     const email = req.body.email
     const mdp = req.body.password
 
+    if (name.length === 0) {
+        error = 'Veuilliez remplir le champ Nom.'
+    }
+    if (email.length === 0) {
+        error = 'Veuilliez remplir le champ Email.'
+    }
+    if (mdp.length === 0) {
+        error = 'Veuilliez remplir le champ Mot de passe.'
+    }
+
+    const infos = await getInfos();
+    const qualities = await getQualities();
+    
     const userData = await getFoundUser(name, email);
 
     const dbPass = userData[0].mdp
@@ -65,7 +74,6 @@ const signIn = router.post('/admin/signIn', async (req, res) => {
         const listUsers = await getUsers();
         res.render("administration/administration", {
             infos: infos,
-            //connections: connections,
             userRole: role,
             qualities: qualities,
             listUsers: listUsers,
@@ -73,7 +81,6 @@ const signIn = router.post('/admin/signIn', async (req, res) => {
         });
 
     }else{
-        error = 'Invalide veuilliez réessayer.'
         res.render("administration/login", {
             error: error
         });
@@ -83,7 +90,9 @@ const signIn = router.post('/admin/signIn', async (req, res) => {
 });
 
 const updInfo = router.post('/admin/updInfo', verifyToken, async (req, res) => {
+
     var error = false
+
     const id = req.body.infoId
     const value = req.body.infoValue
 
@@ -210,27 +219,50 @@ const delQualities = router.post('/admin/delQualities', verifyToken, async (req,
 
 const addAdmin = router.post('/admin/addAdmin', verifyToken, async (req, res) => {
     
+    var error = false
+    var existName = false
+
     const name = req.body.nameAdmin
     const email = req.body.emailAdmin
     const mdp = req.body.mdpAdmin
-    const cryptedMdp = await cryptagHash(mdp)
-    console.log(cryptedMdp)
-    const request = await insertAdmin(name, email, cryptedMdp);
-    console.log(request)
 
-    const infos = await getInfos();
-    //const connections = getConnection();
-    //const userRole = getUserRole();
-    const qualities = await getQualities();
+    if (name.length === 0 || name.length === 61) {
+        error = "le nom est trop long ou vide"
+    }
+    if (email.length === 0 || email.length === 121) {
+        error = "l'email est trop long ou vide"
+    }
+    if (mdp.length === 0 || mdp.length < 8 || mdp.length === 61) {
+        error = "le mdp est trop court ou vide"
+    }
+
     const listUsers = await getUsers();
+
+    for (const user of listUsers) {
+        if (user.name === name) {
+          existName = true;
+          error = "Il ne peux pas y avoir deux admin avec le méme nom"
+          break;
+        }
+    }
+
+    const cryptedMdp = await cryptagHash(mdp)
+
+    if(!error){
+        const request = await insertAdmin(name, email, cryptedMdp);
+    }
+    
+    const infos = await getInfos();
+    const qualities = await getQualities();
+    
     const role = req.session.userRole 
+
     res.render("administration/administration", {
         listUsers: listUsers,
         infos: infos,
-        //connections: connections,
-        //userRole: userRole,
         userRole: role,
-        qualities: qualities
+        qualities: qualities,
+        error:error
     });
 });
 
@@ -240,7 +272,7 @@ const suppAdmin = router.post('/admin/suppAdmin', verifyToken, async (req, res) 
 
     const id = req.body.suppAdmin
 
-    if (id.length === 0 || !id.match(numberRegex)) {
+    if (id.length === 0 || !id.match(numberRegex) || id === 1) {
         error = 'Admin Non Identifier.'
     }
     if(!error){
@@ -265,4 +297,4 @@ const suppAdmin = router.post('/admin/suppAdmin', verifyToken, async (req, res) 
     
 });
 
-export { administrationController, signIn, updInfo, updQualities, addQualities, delQualities, addAdmin, suppAdmin   };
+export { administrationController, signIn, updInfo, updQualities, addQualities, delQualities, addAdmin, suppAdmin };
